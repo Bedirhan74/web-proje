@@ -17,14 +17,13 @@ const { verifyToken } = require('./middleware');
 const users = require('./routes/users');
 
 
-
 dotenv.config();
 
 const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:3001', // frontend portu
+  origin: 'http://localhost:3000', // frontend portu
   credentials: true
 }));
 app.use(express.json());
@@ -53,6 +52,8 @@ app.use('/api/gallery', galleryRoutes);
 app.use('/api/stats', statsRoutes);
 
 app.use('/api/users', require('./routes/users'));
+
+app.use('/uploads',express.static(path.join(__dirname,'uploads')));
 
 
 
